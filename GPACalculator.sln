@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPACalculator", "GPACalculator\GPACalculator.csproj", "{362926C0-33FF-4DAF-A250-5CD176F30BCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPACalculator.UI", "GPACalculator\GPACalculator.UI.csproj", "{362926C0-33FF-4DAF-A250-5CD176F30BCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPACalculator.Model", "GPACalculator.Model\GPACalculator.Model.csproj", "{76A637BF-4956-4F2A-94C7-A1A1AECBAD0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPACalculator.Data", "GPACalculator.Data\GPACalculator.Data.csproj", "{D82BBC41-5BC2-4AE1-B1BF-73EA5FC7E78E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPACalculator.Core", "GPACalculator.Core\GPACalculator.Core.csproj", "{9EA98A93-9266-47E6-B8B5-04B1314AC063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{362926C0-33FF-4DAF-A250-5CD176F30BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{362926C0-33FF-4DAF-A250-5CD176F30BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{362926C0-33FF-4DAF-A250-5CD176F30BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76A637BF-4956-4F2A-94C7-A1A1AECBAD0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A637BF-4956-4F2A-94C7-A1A1AECBAD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A637BF-4956-4F2A-94C7-A1A1AECBAD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A637BF-4956-4F2A-94C7-A1A1AECBAD0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D82BBC41-5BC2-4AE1-B1BF-73EA5FC7E78E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D82BBC41-5BC2-4AE1-B1BF-73EA5FC7E78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D82BBC41-5BC2-4AE1-B1BF-73EA5FC7E78E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D82BBC41-5BC2-4AE1-B1BF-73EA5FC7E78E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EA98A93-9266-47E6-B8B5-04B1314AC063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EA98A93-9266-47E6-B8B5-04B1314AC063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EA98A93-9266-47E6-B8B5-04B1314AC063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA98A93-9266-47E6-B8B5-04B1314AC063}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
