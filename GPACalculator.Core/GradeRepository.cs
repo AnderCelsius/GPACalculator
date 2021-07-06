@@ -75,5 +75,55 @@ namespace GPACalculator.Core
 
             return message;
         }
+
+        public string GetGPA()
+        {
+            var totalGradeUnitRegistered = 0;
+            var totalgradeUnitPassed = 0;
+            var totalWeightPoints = 0;
+            var gpa = 0.00;
+
+            foreach (var item in DataStore.GradeTable)
+            {
+                totalWeightPoints += item.WeightPoint;
+                totalGradeUnitRegistered += item.CourseUnit;
+                if (item.Grade != "F")
+                {
+                    totalgradeUnitPassed += item.CourseUnit;
+                }
+            }
+
+            gpa += (double)totalWeightPoints / (double)totalGradeUnitRegistered;
+
+            return $"Total Grade Unit Registered is {totalGradeUnitRegistered}\n" +
+                   $"Total Grade Unit Passed is {totalgradeUnitPassed}\n" +
+                   $"Total Weight Point is {totalWeightPoints}\n" +
+                   $"Your GPA is = {gpa:F2} to 2 decimal places.";
+
+        }
+
+        public void PrintSpreadSheet()
+        {
+            if (DataStore.GradeTable.Count != 0)
+            {
+                Console.Clear();
+                PrintTable.PrintLine();
+                PrintTable.PrintRow("COURSE CODE", "COURSE UNIT", "GRADE", "GRADE UNIT", "WEIGHT POINT", "REMARK");
+                PrintTable.PrintLine();
+                foreach (var item in DataStore.GradeTable)
+                {
+                    PrintTable.PrintRow(item.CourseCode, item.CourseUnit.ToString(), item.Grade, item.GradePoint.ToString(), item.WeightPoint.ToString(), item.Remark);
+                    PrintTable.PrintLine();
+                }
+
+                Console.WriteLine(GetGPA());
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Please add courses first");
+            }
+
+        }
     }
 }
