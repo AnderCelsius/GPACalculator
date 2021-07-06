@@ -122,6 +122,7 @@ namespace GPACalculator.Core
             else
             {
                 Console.WriteLine("Please add courses first");
+                Console.WriteLine("");
             }
 
         }

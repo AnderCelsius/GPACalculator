@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GPACalculator.UI;
+using System;
 
 namespace GPACalculator
 {
@@ -6,7 +7,8 @@ namespace GPACalculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var gpa = new UserInterface();
+            gpa.RunApp();
         }
     }
 }
