@@ -117,6 +117,8 @@ namespace GPACalculator.Core
                 }
 
                 Console.WriteLine(GetGPA());
+                Console.WriteLine("");
+                Console.Write("Press Enter to Continue to main menu");
                 Console.ReadLine();
             }
             else

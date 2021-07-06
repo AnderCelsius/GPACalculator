@@ -27,6 +27,7 @@ namespace GPACalculator.UI
                 int numRegisteredCourse = 0;
                 var message = string.Empty;
 
+                Console.Clear();
                 Console.WriteLine("Press 1 to Add Scores");
                 Console.WriteLine("Press 2 to Get SpreadSheet");
                 Console.WriteLine("Press 3 to exit app");
