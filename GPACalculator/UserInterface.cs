@@ -12,7 +12,7 @@ namespace GPACalculator.UI
         {
             var myScore = new GradeRepository();
 
-            Console.WriteLine("***********UNIVERSITY OF PORT HARCOURT***********\n*********OFFICE OF THE REGISTRAR*********\n*********EXAMINATIONS AND RECORDS DIVISION********");
+            Console.WriteLine("***********UNIVERSITY OF PORT HARCOURT***********\n************OFFICE OF THE REGISTRAR************\n*******EXAMINATIONS AND RECORDS DIVISION********");
             Console.WriteLine("");
             Console.WriteLine("Welcome to your GPA Calculator Portal");
             Console.WriteLine("");
