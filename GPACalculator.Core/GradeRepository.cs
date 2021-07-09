@@ -1,13 +1,15 @@
 ﻿using GPACalculator.Data;
 using GPACalculator.Model;
+using GPACalculator.Utility;
 using System;
+using System.Linq;
 
 namespace GPACalculator.Core
 {
+    
     public class GradeRepository
     {
         int count = 1;
-
         public string AddScore(string course, int courseUnit, int score)
         {
             var message = string.Empty;
@@ -21,61 +23,70 @@ namespace GPACalculator.Core
 
             if (score >= 70)
             {
-                gradePoint = (int)GradeModel.GradeSystem.A;
-                grade += (GradeModel.GradeSystem)gradePoint;
+                gradePoint = (int)GradeSystem.GradeUnit.A;
+                grade += (GradeSystem.GradeUnit)gradePoint;
                 weightPoint += courseUnit * gradePoint;
                 remark += "Excellent";
             }
             else if (score >= 60)
             {
-                gradePoint = (int)GradeModel.GradeSystem.B;
-                grade += (GradeModel.GradeSystem)gradePoint;
+                gradePoint = (int)GradeSystem.GradeUnit.B;
+                grade += (GradeSystem.GradeUnit)gradePoint;
                 weightPoint += courseUnit * gradePoint;
                 remark += "Very Good";
             }
             else if (score >= 50)
             {
-                gradePoint = (int)GradeModel.GradeSystem.C;
-                grade += (GradeModel.GradeSystem)gradePoint;
+                gradePoint = (int)GradeSystem.GradeUnit.C;
+                grade += (GradeSystem.GradeUnit)gradePoint;
                 weightPoint += courseUnit * gradePoint;
                 remark += "Good";
             }
             else if (score >= 45)
             {
-                gradePoint = (int)GradeModel.GradeSystem.D;
-                grade += (GradeModel.GradeSystem)gradePoint;
+                gradePoint = (int)GradeSystem.GradeUnit.D;
+                grade += (GradeSystem.GradeUnit)gradePoint;
                 weightPoint += courseUnit * gradePoint;
                 remark += "Fair";
             }
             else if (score >= 40)
             {
-                gradePoint = (int)GradeModel.GradeSystem.E;
-                grade += (GradeModel.GradeSystem)gradePoint;
+                gradePoint = (int)GradeSystem.GradeUnit.E;
+                grade += (GradeSystem.GradeUnit)gradePoint;
                 weightPoint += courseUnit * gradePoint;
                 remark += "Pass";
             }
             else
             {
-                gradePoint = (int)GradeModel.GradeSystem.F;
-                grade += (GradeModel.GradeSystem)gradePoint;
+                gradePoint = (int)GradeSystem.GradeUnit.F;
+                grade += (GradeSystem.GradeUnit)gradePoint;
                 weightPoint += courseUnit * gradePoint;
                 remark += "Fail";
             }
 
-            var record = new GradeModel(count, courseCode, courseUnit, score, grade, gradePoint, weightPoint, remark);
-            DataStore.GradeTable.Add(record);
-            int updatedItemCount = DataStore.GradeTable.Count;
-            count++;
+            var foundCourse = DataStore.GradeTable.Find(i => i.CourseCode == courseCode);
 
-            if (updatedItemCount > previousItemCount)
+            if (foundCourse == null)
             {
-                message = "Course added succesfully!";
+                var record = new Grade(count, courseCode, courseUnit, score, grade, gradePoint, weightPoint, remark);
+                DataStore.GradeTable.Add(record);
+                int updatedItemCount = DataStore.GradeTable.Count;
+                count++;
+
+                if (updatedItemCount > previousItemCount)
+                {
+                    message = "Course added succesfully!";
+                }
             }
-
-
+            else
+                message = "record already exist";
+            
             return message;
         }
+            
+    
 
+       
         public string GetGPA()
         {
             var totalGradeUnitRegistered = 0;
@@ -87,7 +98,7 @@ namespace GPACalculator.Core
             {
                 totalWeightPoints += item.WeightPoint;
                 totalGradeUnitRegistered += item.CourseUnit;
-                if (item.Grade != "F")
+                if (item.CourseGrade.ToString() != "F")
                 {
                     totalgradeUnitPassed += item.CourseUnit;
                 }
@@ -102,8 +113,9 @@ namespace GPACalculator.Core
 
         }
 
-        public void PrintSpreadSheet()
+        public string PrintSpreadSheet()
         {
+            var message = string.Empty;
             if (DataStore.GradeTable.Count != 0)
             {
                 Console.Clear();
@@ -112,21 +124,22 @@ namespace GPACalculator.Core
                 PrintTable.PrintLine();
                 foreach (var item in DataStore.GradeTable)
                 {
-                    PrintTable.PrintRow(item.CourseCode, item.CourseUnit.ToString(), item.Grade, item.GradePoint.ToString(), item.WeightPoint.ToString(), item.Remark);
+                    PrintTable.PrintRow(item.CourseCode, item.CourseUnit.ToString(), item.CourseGrade.ToString(), item.GradePoint.ToString(), item.WeightPoint.ToString(), item.Remark);
                     PrintTable.PrintLine();
                 }
 
-                Console.WriteLine(GetGPA());
-                Console.WriteLine("");
-                Console.Write("Press Enter to Continue to main menu");
-                Console.ReadLine();
+                message += $"{GetGPA()}\n" +
+                           $" \n" +
+                           $"Press Enter to Continue to main menu";
+               
             }
             else
             {
-                Console.WriteLine("Please add courses first");
-                Console.WriteLine("");
+                message += $"Please add courses first\n" +
+                           $"";
             }
 
+            return message;
         }
     }
 }

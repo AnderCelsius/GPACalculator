@@ -6,6 +6,6 @@ namespace GPACalculator.Data
 {
     public class DataStore
     {
-        public static List<GradeModel> GradeTable { get; set; } = new List<GradeModel>();
+        public static List<Grade> GradeTable { get; set; } = new List<Grade>();
     }
 }
